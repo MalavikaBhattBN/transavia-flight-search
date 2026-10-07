@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Transavia Flight Search
+
+A small flight search application built with Next.js and TypeScript as part of the Transavia front-end assignment.
+
+## Features
+
+- Search flights from Amsterdam (Schiphol)
+- Select destinations using human-readable airport names
+- Search by departure date
+- Display matching flight information including:
+  - Departure and arrival airports
+  - Departure and arrival times
+  - Flight number
+  - Total price
+- Show an empty state when no matching flights are available
+- Responsive, Transavia-inspired interface
+- Native form validation for required fields and the available date range
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Vitest
+- React Testing Library
 
 ## Getting Started
 
-First, run the development server:
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000` in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Testing
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Run the test suite:
 
-## Learn More
+```bash
+npm test
+```
 
-To learn more about Next.js, take a look at the following resources:
+The tests cover:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Flight filtering logic
+- Rendering matching flight results
+- Rendering the empty state
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Production Build
 
-## Deploy on Vercel
+Create an optimized production build:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Implementation Notes
+
+The application uses the supplied static flight and airport datasets.
+
+Flight filtering is separated from the UI in a pure `findFlights` function, allowing the business logic to be tested independently from the React components.
+
+The search form uses native HTML form semantics and `FormData`. Search results are managed at the page level, while rendering responsibilities are separated into `FlightResults` and `FlightCard` components.
+
+The supplied flight dataset contains departures from Amsterdam between 10 November and 30 November 2022, so the departure date input is constrained to that range.
